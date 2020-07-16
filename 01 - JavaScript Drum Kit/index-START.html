@@ -62,14 +62,14 @@
 function playSound(e){
   const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  
   key.classList.add("playing");
+  audio.currentTime = 0; 
   audio.play();
+  //key.addEventListener('transitionend', () = > key.classList.remove("playing");)
 }
 
 const keys = Array.from(document.querySelectorAll('.key'));
-//keys.forEach(key => alert(key));
-
+keys.forEach((key) => {key.addEventListener('transitionend', ()=> key.classList.remove('playing'))})
 
 window.addEventListener("keydown", playSound);
 
